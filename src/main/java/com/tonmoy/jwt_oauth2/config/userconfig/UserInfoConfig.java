@@ -1,4 +1,4 @@
-package com.tonmoy.jwt_oauth2.config;
+package com.tonmoy.jwt_oauth2.config.userconfig;
 
 import com.tonmoy.jwt_oauth2.entity.UserInfoEntity;
 import lombok.RequiredArgsConstructor;

@@ -28,5 +28,5 @@ public class UserInfoEntity {
     private String mobileNumber;
 
     @Column(nullable = false, name = "Roles")
-    private String roles; //Role_Admin,Role_Manager --> [Role_Admin,Role_Manager]
+    private String roles; //ROLE_MANAGER,ROLE_ADMIN --> [ROLE_MANAGER,ROLE_ADMIN]
 }

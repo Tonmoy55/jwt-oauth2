@@ -1,5 +1,6 @@
-package com.tonmoy.jwt_oauth2.config;
+package com.tonmoy.jwt_oauth2.config.userconfig;
 
+import com.tonmoy.jwt_oauth2.config.userconfig.UserInfoConfig;
 import com.tonmoy.jwt_oauth2.repository.UserInfoRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
