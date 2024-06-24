@@ -35,6 +35,6 @@ public class InitialUserInfo implements CommandLineRunner {
         user.setRoles("ROLE_USER");
         user.setEmailId("user@user.com");
 
-        //userInfoRepo.saveAll(List.of(manager,admin,user));
+        userInfoRepo.saveAll(List.of(manager,admin,user));
     }
 }

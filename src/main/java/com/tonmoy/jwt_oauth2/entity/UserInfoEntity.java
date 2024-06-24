@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "UserInfo")
 public class UserInfoEntity {
     @Id
+    @Column(name = "Id")
     @GeneratedValue
     private Long id;
 
