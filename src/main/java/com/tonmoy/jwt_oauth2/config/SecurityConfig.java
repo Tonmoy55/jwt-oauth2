@@ -5,6 +5,8 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
+import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtAccessTokenFilter;
+import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtTokenUtils;
 import com.tonmoy.jwt_oauth2.config.userconfig.UserInfoManagerConfig;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.nimbusds.jose.proc.SecurityContext;
 
@@ -39,6 +42,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     private final UserInfoManagerConfig userInfoManagerConfig;
     private final RSAKeyRecord rsaKeyRecord;
+    private final JwtTokenUtils jwtTokenUtils;
 
     @Order(1)
     @Bean
@@ -66,6 +70,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(new JwtAccessTokenFilter(rsaKeyRecord, jwtTokenUtils), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> {
                     log.error("[SecurityConfig:apiSecurityFilterChain] Exception due to :{}",ex);
                     ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint());
