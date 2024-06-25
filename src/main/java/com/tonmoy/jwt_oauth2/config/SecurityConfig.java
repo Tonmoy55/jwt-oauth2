@@ -6,8 +6,10 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtAccessTokenFilter;
+import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtRefreshTokenFilter;
 import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtTokenUtils;
 import com.tonmoy.jwt_oauth2.config.userconfig.UserInfoManagerConfig;
+import com.tonmoy.jwt_oauth2.repository.RefreshTokenRepo;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,7 @@ public class SecurityConfig {
     private final UserInfoManagerConfig userInfoManagerConfig;
     private final RSAKeyRecord rsaKeyRecord;
     private final JwtTokenUtils jwtTokenUtils;
+    private final RefreshTokenRepo refreshTokenRepo;
 
     @Order(1)
     @Bean
@@ -78,9 +81,28 @@ public class SecurityConfig {
                 .build();
     }
 
+    @Order(3)
+    @Bean
+    public SecurityFilterChain refreshTokenSecurityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        return httpSecurity
+                .securityMatcher(new AntPathRequestMatcher("/refresh-token/**"))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(new JwtRefreshTokenFilter(rsaKeyRecord,jwtTokenUtils,refreshTokenRepo), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(ex -> {
+                    log.error("[SecurityConfig:refreshTokenSecurityFilterChain] Exception due to :{}",ex);
+                    ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint());
+                    ex.accessDeniedHandler(new BearerTokenAccessDeniedHandler());
+                })
+                .httpBasic(withDefaults())
+                .build();
+    }
+
     //For H2 DB
 
-   /* @Order(3)
+   /* @Order(4)
     @Bean
     public SecurityFilterChain h2ConsoleSecurityFilterChainConfig(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
