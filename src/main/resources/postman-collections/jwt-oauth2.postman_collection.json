@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "0c86edd5-1d0a-463e-b725-d9d7c9da20f0",
+		"name": "jwt-oauth2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12960706",
+		"_collection_link": "https://lunar-water-376802.postman.co/workspace/API-TEST~f70336a7-55a2-4385-b08e-8d538ae6f59e/collection/12960706-0c86edd5-1d0a-463e-b725-d9d7c9da20f0?action=share&source=collection_link&creator=12960706"
+	},
+	"item": [
+		{
+			"name": "welcome-message",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/welcome-message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"welcome-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager-message",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "manager@manager.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/manager-message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"manager-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-message",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/admin-message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"admin-message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign-in",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh-token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log-out",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign-up",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
