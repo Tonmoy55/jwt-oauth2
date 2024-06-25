@@ -1,5 +1,5 @@
 #Ref-Github: https://github.com/atquil/spring-security/blob/JWT-oauth2/README.md
-#Postman Collection for this project is in "src/main/resources/postman-collections"
+#Postman Collection for this project is in "src/main/resources/postman-collections". Need to only import the postman collection file in the postman client.
 # spring-security
 This tutorial will provide a step-by-step guide to implementing these features in your Spring Boot application.
 You will learn how to configure Spring Security to work with JWT, define data models and associations for authentication and authorization,
