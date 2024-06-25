@@ -2,8 +2,10 @@ package com.tonmoy.jwt_oauth2.service;
 
 import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtTokenGenerator;
 import com.tonmoy.jwt_oauth2.dto.AuthResponseDto;
+import com.tonmoy.jwt_oauth2.dto.UserRegistrationDto;
 import com.tonmoy.jwt_oauth2.entity.RefreshTokenEntity;
 import com.tonmoy.jwt_oauth2.entity.UserInfoEntity;
+import com.tonmoy.jwt_oauth2.mapper.UserInfoMapper;
 import com.tonmoy.jwt_oauth2.repository.RefreshTokenRepo;
 import com.tonmoy.jwt_oauth2.repository.UserInfoRepo;
 import jakarta.servlet.http.Cookie;
@@ -20,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +31,7 @@ public class AuthService {
     private final UserInfoRepo userInfoRepo;
     private final JwtTokenGenerator jwtTokenGenerator;
     private final RefreshTokenRepo refreshTokenRepo;
+    private final UserInfoMapper userInfoMapper;
 
     public AuthResponseDto getJwtTokensAfterAuthentication(Authentication authentication, HttpServletResponse response) {
         try {
@@ -60,23 +64,23 @@ public class AuthService {
     }
 
     public Object geAccessTokenUsingRefreshToken(String authorizationHeader) {
-        if(!authorizationHeader.startsWith(OAuth2AccessToken.TokenType.BEARER.getValue())){
-            return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Please verify your token type");
+        if (!authorizationHeader.startsWith(OAuth2AccessToken.TokenType.BEARER.getValue())) {
+            return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please verify your token type");
         }
 
         final String refreshToken = authorizationHeader.substring(7);
 
         var refreshTokenEntity = refreshTokenRepo.findByRefreshToken(refreshToken)
-                .filter(tokens-> !tokens.isRevoked())
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Refresh token revoked"));
+                .filter(tokens -> !tokens.isRevoked())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Refresh token revoked"));
 
         UserInfoEntity userInfoEntity = refreshTokenEntity.getUser();
-        Authentication authentication =  createAuthenticationObject(userInfoEntity);
+        Authentication authentication = createAuthenticationObject(userInfoEntity);
 
         //Use the authentication object to generate new accessToken as the Authentication object that we will have may not contain correct role.
         String accessToken = jwtTokenGenerator.generateAccessToken(authentication);
 
-        return  AuthResponseDto.builder()
+        return AuthResponseDto.builder()
                 .accessToken(accessToken)
                 .accessTokenExpiry(5 * 60)
                 .userName(userInfoEntity.getUserName())
@@ -84,11 +88,46 @@ public class AuthService {
                 .build();
     }
 
+    public AuthResponseDto registerUser(UserRegistrationDto userRegistrationDto, HttpServletResponse httpServletResponse) {
+        try{
+            log.info("[AuthService:registerUser]User Registration Started with :::{}",userRegistrationDto);
+
+            Optional<UserInfoEntity> user = userInfoRepo.findByEmailId(userRegistrationDto.userEmail());
+            if(user.isPresent()){
+                throw new Exception("User Already Exist");
+            }
+
+            UserInfoEntity userDetailsEntity = userInfoMapper.convertToEntity(userRegistrationDto);
+            Authentication authentication = createAuthenticationObject(userDetailsEntity);
+
+            String accessToken = jwtTokenGenerator.generateAccessToken(authentication);
+            String refreshToken = jwtTokenGenerator.generateRefreshToken(authentication);
+
+            UserInfoEntity savedUserDetails = userInfoRepo.save(userDetailsEntity);
+            saveUserRefreshToken(userDetailsEntity,refreshToken);
+
+            createRefreshTokenCookie(httpServletResponse,refreshToken);
+
+            log.info("[AuthService:registerUser] User:{} Successfully registered",savedUserDetails.getUserName());
+            return   AuthResponseDto.builder()
+                    .accessToken(accessToken)
+                    .accessTokenExpiry(5 * 60)
+                    .userName(savedUserDetails.getUserName())
+                    .tokenType(OAuth2AccessToken.TokenType.BEARER)
+                    .build();
+
+
+        }catch (Exception e){
+            log.error("[AuthService:registerUser]Exception while registering the user due to :"+e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+        }
+    }
+
     private Cookie createRefreshTokenCookie(HttpServletResponse response, String refreshToken) {
         Cookie refreshTokenCookie = new Cookie("refresh_token", refreshToken);
         refreshTokenCookie.setHttpOnly(true);
         refreshTokenCookie.setSecure(true);
-        refreshTokenCookie.setMaxAge(15*24*60*60);
+        refreshTokenCookie.setMaxAge(15 * 24 * 60 * 60);
 
         response.addCookie(refreshTokenCookie);
         return refreshTokenCookie;

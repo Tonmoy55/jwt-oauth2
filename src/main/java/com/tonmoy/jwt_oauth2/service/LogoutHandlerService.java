@@ -2,7 +2,6 @@ package com.tonmoy.jwt_oauth2.service;
 
 import com.tonmoy.jwt_oauth2.config.RSAKeyRecord;
 import com.tonmoy.jwt_oauth2.config.jwtConfig.JwtTokenUtils;
-import com.tonmoy.jwt_oauth2.entity.RefreshTokenEntity;
 import com.tonmoy.jwt_oauth2.repository.RefreshTokenRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,8 +14,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
