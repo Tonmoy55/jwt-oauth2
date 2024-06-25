@@ -11,16 +11,11 @@
 			"name": "welcome-message",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin@admin.com",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJtYW5hZ2VyMkBtYW5hZ2VyLmNvbSIsImV4cCI6MTcxOTMxNjQxMSwiaWF0IjoxNzE5MzE2MTExLCJzY29wZSI6IlJFQUQifQ.EjEnppbLldw5TMYhP_AHDaPyOzqgPv_uLDiSQayjsTzdPq0O_4GtyfkyuCUtHyBkoTIMJlf9vSenTjZzTYdb5gwrk3Q7jl4aoaDH_UGuPvuSCS9g2jRhwcCJVwneedA5CEqRytCxoKdF_nnRk8Z6u3uEEsYWLJ-5dgdluE877D9SaOVAIuC7veWA-W93WvkFwXFoyz26Ex665tTrkUYNv4o9Q46Shh-aYX-EYjhLAaHcC3V9wcc0fNtlD2eieBKEnOym4YZmwHArhQX4JWUM6o5-6qh7wR0k1oR6s_gyCEHk2eFliuZG8y_Z0FV8I6TevRce_shjLN36aIGrJOKAHg",
 							"type": "string"
 						}
 					]
@@ -28,12 +23,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/welcome-message",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/welcome-message",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
 						"api",
 						"welcome-message"
@@ -46,16 +39,11 @@
 			"name": "manager-message",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "username",
-							"value": "manager@manager.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJleHAiOjE3MTkzMTYwMTMsImlhdCI6MTcxOTMxNTcxMywic2NvcGUiOiJSRUFEIERFTEVURSBXUklURSJ9.VApNjss7qT5ne3Mp3lr3_vdjGnmp6jFC1ZJAcDIjkiEjopSiaN_5JZcs47Z8pI60OsPb0lm8wtlXyfmaZ5eeWo4b1utxY29NY0F9nv0PZYD4d6ye5zIkfUI2QSKGL-0yaPPUHvwfAEFR5JCPB3HmBzypIHCsNDNBHb8MuGk0Z-VX8OVWyF6siQvK9YutQsU1qV4Aifo_oDGvofg2p1AUZDGbOO9l7TMtuUTKmqqoBjmmJ3QZT0Iyf05tiw-rc9_Ojk75S2l-r-D9-S2sWNhDpah--zA8ohFFqksKKIPFwp99LClcWW2IgGQ0anbv7Gdhj2gRK-jmJ1DIBmKnd-doqg",
 							"type": "string"
 						}
 					]
@@ -63,12 +51,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/manager-message",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/manager-message",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
 						"api",
 						"manager-message"
@@ -81,16 +67,11 @@
 			"name": "admin-message",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "username",
-							"value": "admin@admin.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJtYW5hZ2VyMkBtYW5hZ2VyLmNvbSIsImV4cCI6MTcxOTMxNjQxMSwiaWF0IjoxNzE5MzE2MTExLCJzY29wZSI6IlJFQUQifQ.EjEnppbLldw5TMYhP_AHDaPyOzqgPv_uLDiSQayjsTzdPq0O_4GtyfkyuCUtHyBkoTIMJlf9vSenTjZzTYdb5gwrk3Q7jl4aoaDH_UGuPvuSCS9g2jRhwcCJVwneedA5CEqRytCxoKdF_nnRk8Z6u3uEEsYWLJ-5dgdluE877D9SaOVAIuC7veWA-W93WvkFwXFoyz26Ex665tTrkUYNv4o9Q46Shh-aYX-EYjhLAaHcC3V9wcc0fNtlD2eieBKEnOym4YZmwHArhQX4JWUM6o5-6qh7wR0k1oR6s_gyCEHk2eFliuZG8y_Z0FV8I6TevRce_shjLN36aIGrJOKAHg",
 							"type": "string"
 						}
 					]
@@ -98,15 +79,19 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/admin-message",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/api/admin-message?message=something",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
 						"api",
 						"admin-message"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "something"
+						}
 					]
 				}
 			},
@@ -133,14 +118,11 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/sign-in",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/sign-in",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
-						"api",
 						"sign-in"
 					]
 				}
@@ -151,16 +133,11 @@
 			"name": "refresh-token",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "username",
-							"value": "admin@admin.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJleHAiOjE3MjA2MTE3MTMsImlhdCI6MTcxOTMxNTcxMywic2NvcGUiOiJSRUZSRVNIX1RPS0VOIn0.oV3THHUapSZqNt6V8orTKu0L1zP_pnddnuxfdIdlXeqorRb0hmwqrpn00uksaCPjPmr5dM0Vex5Hw0IAaXnlIt12yHEW2w-vVHMvzcsSATlaHnWlG0z4xGYvdKyEhroAhrFFauPEv9wpUBdhdBdFiKin-vXZC_FifWymhW9oA5PKuoviHvkjjvFU8BXmrrE_wwWYbH59MxZLkxwt-XXE77RaT8vjxhCv_78sEMF-Up1ZQGGyZkVuOjrFYwNd-KQIlgXoRDLuxA-4ZdCoIkp7tznwWPmk6U5Of-dez6TYGvwIL3w12Luk4H-Aulq--n7kzeMgMswpyTD7Dq01IzVQeQ",
 							"type": "string"
 						}
 					]
@@ -168,15 +145,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/sign-in",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/refresh-token",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
-						"api",
-						"sign-in"
+						"refresh-token"
 					]
 				}
 			},
@@ -186,16 +160,11 @@
 			"name": "log-out",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "username",
-							"value": "admin@admin.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJleHAiOjE3MjA2MTE5NzYsImlhdCI6MTcxOTMxNTk3Niwic2NvcGUiOiJSRUZSRVNIX1RPS0VOIn0.pWRyR7ACeJxYsXrkBPy4X_Lz03A9YnwPVmbE0XbNjw2uY29XE0Pk3nZS4h5-n0sGbDA3TxgkmB1RgqJV6foNHuxvFTR0MiEQcOBraNrJYUrT37OUEpIQkC456g580NCo-k6efdIx1-PqIx-ShAePVImREODSmq61uXbvSOrtht8aRAMjxAZA635DicAqVplQAntUPiLqLQB8Pqq52JtfMhyNFG2rvLIUOXkiDR_W9PYmFWtp_gWZ6QOknZqVOzsueLbTA9y4YqerdoPPd0uOfvHN9FrQv5w6ihngWwK6AN2Iy7KmOqY0dItvFkg9vMz3EXWrEwcGFGk6yolu9x4rJw",
 							"type": "string"
 						}
 					]
@@ -203,15 +172,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8181/api/sign-in",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/logout",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
-						"api",
-						"sign-in"
+						"logout"
 					]
 				}
 			},
@@ -221,36 +187,69 @@
 			"name": "sign-up",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "username",
-							"value": "admin@admin.com",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJ0b25tb3kiLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJleHAiOjE3MjA2MDUyOTEsImlhdCI6MTcxOTMwOTI5MSwic2NvcGUiOiJSRUZSRVNIX1RPS0VOIn0.UuQP_BCUPy431Y83ntyDYQLdZwiLLDIar_JrUx12l9KXaA3ZKyA4rkV0t79zIckE6QfMJSlT4utXbGpxPMYm87qs-hgLZIxgwUlIsfjSguu1s-7Cxl55mTXgoxUSC1fbQs5Tz-fw6QuLLZC9_wVZDeCyqm1wY51WjAX6rFlxtj7_XwaZObMgnvbCb0bYYxaviGs0Ox0FTj5H_Z6pQ9UaEm-hU0xljaY6X0hMg_ffnR-nDo0gQ6z6iHe6lukxu-0fxxvNNaZN39mjaiC-57SVnI-3x7a5mz3-bkpf_hbUGETKFuVVLc01MbHIdz4XeCsnLRqju6JD5shDT2uBNGFPJw",
 							"type": "string"
 						}
 					]
 				},
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"Manager\",\r\n    \"userEmail\": \"manager2@manager.com\",\r\n    \"userMobileNo\": \"8888888888\",\r\n    \"userPassword\": \"password\",\r\n    \"userRole\": \"ROLE_MANAGER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8181/api/sign-in",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/sign-up",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "8181",
 					"path": [
-						"api",
-						"sign-in"
+						"sign-up"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8181",
+			"type": "string"
 		}
 	]
 }
