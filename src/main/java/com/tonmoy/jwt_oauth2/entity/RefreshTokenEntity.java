@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class RefreshTokenEntity {
     @Id
     @GeneratedValue
+    @Column(name = "Id")
     private Long id;
 
     @Column(name = "RefreshToken", nullable = false, length = 10000)
