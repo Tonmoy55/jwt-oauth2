@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Refresh_Token")
+@Table(name = "refresh_token")
 public class RefreshTokenEntity {
     @Id
     @GeneratedValue
