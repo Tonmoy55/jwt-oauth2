@@ -1,3 +1,4 @@
+#Ref-Youtube: https://www.youtube.com/watch?v=Wg6qWcDpoZU&list=PLnvOemWTJDbmdoc4cX5u_4nZeCa6yOl3A&index=2
 #Ref-Github: https://github.com/atquil/spring-security/blob/JWT-oauth2/README.md
 #Postman Collection for this project is in "src/main/resources/postman-collections". Need to only import the postman collection file in the postman client.
 # spring-security
@@ -8,7 +9,7 @@ You will also learn how to handle exceptions, define payloads, and run and check
 
 The tutorial will cover the following topics:
 
-* **Spring Security**: A powerful and highly customizable authentication and access-control framework.
+* **Spring Security**: A powerful and highly customizable athentication and access-control framework.
 * **OAuth JWT**: A secure and efficient way to handle authentication and authorization between different parties.
 * **HttpOnly Cookie**: A cookie attribute that prevents client-side scripts from accessing the cookie.
 * **AuthFilter**: A filter that intercepts requests and performs authentication and authorization checks.
